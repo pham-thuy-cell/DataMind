@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet"href="style.css">
+</head>
+<body>
+    <nav id="mainNav">
+    <a href="#" class="logo">Data<span>Mind</span></a>
+    <ul class="nav-links">
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#roadmap">Lộ trình</a></li>
+        <li><a href="#courses">Khóa học</a></li>
+        <li><a href="#faq">FAQ</a></li>
+           <li><a href="lab.html"> Lab thực hành</a></li>
+        
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+        Xem khóa học ➯
+    </button>
+    <button class="hamburger" id="hamburger"onclick="toggleDrawer()"aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+    </nav>
+    <!--Mobile-->
+    <div class="mobile-drawer"id="mobileDrawer">
+        <a href="#about"       onclick="closeDrawer()">Giới thiệu</a>
+        <a href="#skills"      onclick="closeDrawer()">Kỹ năng cần có</a>
+        <a href="#roadmap"     onclick="closeDrawer()">Lộ trình học</a>
+        <a href="#courses"     onclick="closeDrawer()">Khóa hoc</a>
+        <a href="#testimonials"onclick="closeDrawer()">Học viên</a>
+        <a href="#faq"         onclick="closeDrawer()">FAQ</a>
+        <button class="drawer-cta"
+        onclick="closeDrawer(); openModal('Tư vấn miễn phí','Miễn phí')">
+        Tư vấn miễn phí 🎯
+    </button>
+    </div>
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="bn-item active" onclick="scrollToSection('home',this)">
+            <span class="bn-icon">🏠</span>Home
+        </button>
+        <button class="bn-item"onclick="scrollToSection('home',this)">
+          <span class="bn-icon">⚡</span>Kỹ năng
+        </button>
+        <button class="bn-item"onclick="scrollToSection('home',this)">
+            <span class="bn-icon">📚</span>Khóa học
+        </button>
+        <button class="bn-item"onclick="scrollToSection('home',this)">
+            <span class="bn-icon">🚀</span>Lộ trình
+        </button>
+        <button class="bn-item"onclick="scrollToSection('home',this)">
+            <span class="bn-icon">❓</span>FAQ
+        </button>
+    </nav>
+    <!--Trang web đầu tiên-->
+    <section class="hero"id="home">
+        <div class="hero-grid"></div>
+        <div class="hero-orb orb1"></div>
+        <div class="hero-orb orb2"></div>
+
+        <div class="hero-content">
+         <div class="hero-badge">
+            <span class="badge-dot"></span>
+             Nền tảng học Data Analytics #1 Việt Nam
+        </div>
+        <h1>Trở thành<br><em>Data Analyst</em> chuyên nghiệp</h1>
+        <p class="hero-desc">
+            Học phân tích dữ liệu từ con số 0 đến thành thạo. Lộ trình rõ ràng,
+            bài tập thực tế, mentoring 1-1 từ chuyên gia hàng đầu.
+        </p>
+        <div class="hero-action">
+            <button class="btn-primary"
+            onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+            Khám phá khóa học
+        </button>
+        <button class="btn-ghost"
+        onclick="document.geEtlementById('about').scroollIntoView({behavior:'smooth'})">
+           Tìm hiểu thêm
+        </button>
+        </div>
+        <div class="hero-stats">
+            <div>
+                <div class="stat-num">12,000+</div>
+                <div class="stat-label">Học viên tốt nghiệp</div>
+                
+            </div>
+            <div>
+                <div class="stat-num">94%</div>
+                <div class="stat-label">Tỷ lệ tìm được việc</div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Giới thiệu về data-->
+    <section id="about">
+        <div class="section-label">Data Analyst là gì?</div>
+        <div class="section-title">Người biến dữ liệu thành<br>quyết định kinh doanh</div>
+        <p class="section-sub">
+            Data Analyst thu thập, xử lý và phân tích dữ liệu để giúp doanh nghiệp
+            hiểu rõ tình hình và đưa ra chiến lược đúng đắn.
+        </p>
+        <div class="about-grid">
+            <!--cột trái biểu đồ lương-->
+            <div class="about-visual reveal">
+                <div class="chart-title">📊 Mức lương theo kinh nghiệm (triệu VND/tháng)</div>
+                <div class="bar-chart">
+                    <div class="bar" style="height:32%; animation-delay:.1s"></div>
+                    <div class="bar" style="height:48%; animation-delay:.2s"></div>
+                    <div class="bar" style="height:63%; animation-delay:.3s"></div>
+                    <div class="bar" style="height:78%; animation-delay:.4s"></div>
+                    <div class="bar" style="height:92%; animation-delay:.5s"></div>
+                    <div class="bar" style="height:100%; animation-delay:.6s"></div>
+                </div>
+                <div class="bar-labels">
+                    <span>Intern</span><span>Junior</span><span>Mid</span>
+                    <span>Senior</span><span>Lead</span><span>Manager</span>
+                </div>
+                <div class="mini-card">
+                     <div class="mini-card">
+                      <div class="mini-card-num">8-15k</div>
+                      <div class="mini-card-label">Fresher</div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-num">25-50M</div>
+                        <div class=""mini-card-label>Senior(5 năm)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Cột phải: vai trò công việc-->
+        <div class="about-points">
+        <div class="about-point reveal">
+        <div class="point-icon">🔍</div>
+        <div class="point-text">
+            <h4>Thu nhập & làm sạch dữ liệu </h4>
+            <p>Khai thác dữ liệu từ nhiều nguồn, xử lý dữ liệu thiếu, nhiễu và chuẩn hóa cho phân tích.</p>
+        </div>
+        </div>
+        <div class="about-point reveal">
+            <div class="point-icon">📈</div>
+            <div class="point-text">
+                <h4>Phân tích & trực quan hóa</h4>
+                <p>Tìm ra xu hướng, patterns ẩn và biến chúng thành biểu đồ dễ hiểu cho stakeholder.</p>
+            </div>
+        </div>
+        <div class="about-point reveal">
+            <div class="point-icon">🧠</div>
+            <div class="point-text">
+                <h4>Đưa ra insight & đề xuất</h4>
+                <p>Dịch từ con số sang ngôn ngữ kinh doanh, hỗ trợ lãnh đạo quyết định dựa trên data.</p>
+            </div>
+        </div>
+        <div class="about-point reveal">
+            <div class="point-icon">🤝</div>
+            <div class="point-text">
+                <h4>Giao tiếp & trình bày kết quả</h4>
+                <p>Xây dựng báo cáo, dashboard và thuyết trình findings cho các team khác nhau.</p>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    <!--Kĩ năng cần có-->
+    <section id="skills" class="skills-bg">
+        <div class="section-label">Kỹ năng cần có</div>
+        <div class="section-title">Bộ công cụ của<br>một Data Analyst</div>
+        <p class="section-sub">Từ kỹ thuật đến tư duy — tất cả đều học được với lộ trình đúng đắn.</p>
+        <div class="skill-grid">
+            <div class="skill-card reveal">
+                <div class="skill-icon">🗄️</div>
+                <h3>SQL & Database</h3>
+                <p>Ngôn ngữ truy vấn quan trọng nhất. Thành thạo SELECT, JOIN, GROUP BY, window functions và tối ưu query.</p>
+                <div class="skill-tags">
+                    <span class="tag">MySQL</span>
+                    <span class="tag">PostgreSQL</span>
+                     <span class="tag"></span>
+                    <span class="tag">SQL Server</span>
+                   
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">🐍</div>
+                <h3>Python for Data</h3>
+                <p>Phân tích dữ liệu quy mô lớn, automation và machine learning cơ bản với hệ sinh thái Python.</p>
+                <div class="skill-tags">
+                    <span class="tag">Pandas</span>
+                    <span class="tag">NumPy</span>
+                    <span class="tag">Matplotlib</span>
+                    <span class="tag">Seaborn</span>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">📊</div>
+                <h3>Visualization Tools</h3>
+                <p>Tạo dashboard đẹp và trực quan để truyền tải thông điệp từ dữ liệu đến người ra quyết định.</p>
+            <div class="skill-tags">
+                <span class="tag">Power BI</span>
+                <span class="tag">Tableau</span>
+                <span class="tag">Looker Studio</span>
+            </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">📉</div>
+                <h3>Thống kê & Toán</h3>
+                <p>Nền tảng toán học để hiểu dữ liệu — phân phối, kiểm định giả thuyết, hồi quy tuyến tính.</p>
+                <div class="skill-tags">
+                    <span class="tag">Descriptive Stats</span>
+                    <span class="tag">A/B Testing</span>
+                    <span class="tag">Regression</span>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">☁️</div>
+                <h3>Cloud & Big Data</h3>
+                <p>Làm việc với dữ liệu quy mô lớn trên cloud — từ ETL pipeline đến data warehouse hiện đại.</p>
+                <div class="skill-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">GCP</span>
+                    <span class="tag">Spark</span>
+                    <span class="tag">dbt</span>
+                </div>
+            </div>
+            <div class="skill-card reveal">
+                <div class="skill-icon">💼</div>
+                <h3>Business Acumen</h3>
+                <p>Hiểu bối cảnh kinh doanh để đặt câu hỏi đúng, phân tích đúng và trình bày thuyết phục.</p>
+                <div class="skill-tags">
+                    <span class="tag">KPI Metrics</span>
+                    <span class="tag">Storytelling</span>
+                    <span class="tag">Communication</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--ROADMAP lộ trình học 6 tháng-->
+    <section id="roadmap">
+        <div class="section-label">Lộ trình học</div>
+        <div class="section-title">Từ zero đến<br>Data Analyst trong 6 tháng</div>
+        <p class="selection-sub">Lộ trình được thiết kế bởi chuyên gia với kinh nghiệm mentoring hàng nghìn data analyst.</p>
+        <div class="roadmap-line">
+            <div class="roadmap-iitem reveal">
+                <div class="road-num">01</div>
+                <div class="road-content">
+                    <h3>Nền tảng & Tư duy dữ liệu</h3>
+                    <p>Khái niệm cơ bản về dữ liệu, data lifecycle và tư duy phân tích. Làm quen Excel/Google Sheets nâng cao.</p>
+                    <span class="road-duration">⏱ Tuần 1-2</span>
+                </div>
+            </div>
+            <div class="roadmap-item reveal">
+                <div class="road-num">02</div>
+                <div class="road-content">
+                    <h3>SQL từ cơ bản đến nâng cao</h3>
+                    <p>Thành thạo SQL để truy vấn và khai thác dữ liệu. Thực hành với dataset thực từ e-commerce, fintech, retail.</p>
+                    <span class="road-duration">⏱ Tuần 3-6</span>
+                </div>
+            </div>
+            <div class="roadmap-item reveal">
+                <div class="road-num">03</div>
+                <div class="road-content">
+                    <h3>Python cho phân tích dữ liệu</h3>
+                    <p>Pandas, NumPy, Matplotlib và Seaborn. Tự động hóa quy trình phân tích và xây dựng báo cáo tự động.</p>
+                    <span class="road-duration">⏱ Tuần 7-12</span>
+                       
+                </div>
+            </div>
+            <div class="roadmap-item reveal">
+                <div class="road-num">04</div>
+                <div class="road-content">
+                    <h3>Visualization & Dashboard</h3>
+                    <p>Xây dựng dashboard chuyên nghiệp với Power BI và Tableau. Nguyên tắc thiết kế trực quan hóa hiệu quả.</p>
+                    <span class="road-duration">⏱ Tuần 13-16</span>
+                </div>
+            </div>
+            <div class="roadmap-item reveal">
+                <div class="road-num">05</div>
+                <div class="road-content">
+                    <h3>Thống kê ứng dụng & A/B Testing</h3>
+                    <p>Kiểm định giả thuyết, phân tích thống kê và thiết kế thí nghiệm A/B áp dụng vào tình huống kinh doanh.</p>
+                    <span class="road-duration">⏱ Tuần 17-20</span>
+                </div>
+            </div>
+            <div class="roadmap-item reveal">
+                <div class="road-num">06</div>
+                <div class="road-content">
+                    <h3>Portfolio & Job Hunting</h3>
+                    <p>Hoàn thiện 3 dự án portfolio, tối ưu LinkedIn, chuẩn bị phỏng vấn và mock interview 1-1.</p>
+                    <span class="road-duration">⏱ Tuần 21-24</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--COURSES- danh sách + bán khóa học-->
+    <section id="courses" class="courses-bg">
+        <div class="courses-header">
+            <div>
+                <div class="section-label">Khóa học</div>
+                <div class="section-title" style="margin-bottom:0;">Chọn khóa học phù hợp</div>
+            </div>
+            <div class="filter-tabs">
+                <button class="tab active" onclick="filterTab(this,'all')">Tất cả</button>
+                <button class="tab" onclick="filterTab(this,'beginner')">Cơ bản</button>
+                <button class="tab" onclick="filterTab(this,'inter')">Trung cấp</button>
+                <button class="tab" onclick="filterTab(this,'advanced')">Nâng cao</button>
+            </div>
+        </div>
+        <div class="courses-grid" id ="coursesGrid">
+        <div class="courses-card reveal" data-level="beginner">
+            <div class="course-thumb thumb-1">
+                🗄️
+                <span class="course-level lv-beginner">Cơ bản</span>
+            </div>
+            <div class="course-body">
+                <div class="course-category">SQL</div>
+                <div class="course-title">SQL for Data Analysis - Từ 0 đến Pro</div>
+                <div class="course-desc">Học SQL từ căn bản đến nâng cao với 100+ bài tập thực tế. Window functions, CTEs và query optimization.</div>
+                <div class="course-meta">
+                    <span>⏱ 28 giờ</span><span>📹 85 bài</span><span>👥 3,200</span>
+                </div>
+            </div>
+            <div class="course-footer">
+                <div class="price">990,000đ  <span class="old-price"> 1,990,000đ</span></div>
+                <button class="btn-enroll" onclick="openModal('SQL for Data Analysis','990,000đ')">Đăng ký</button>
+            </div>
+        </div>
+        <div class="course-card reveal" data-level="beginner">
+            <div class="course-thumb thumb-2">
+                        🐍
+                         <span class="course-level lv-beginner">Cơ bản</span>
+            </div>
+            <div class="course-body">
+                <div class="course-category">Python</div>
+                <div class="course-tilte">Python for Data Analysis với Pandas & NumPy</div>
+                <div class="course-desc">Thành thạo Pandas DataFrame, data cleaning, aggregation và visualization cơ bản với Matplotlib.</div>
+                <div class="course-meta">
+                    <span>⏱ 32 giờ</span><span>📹 96 bài</span><span>👥 2,850</span>
+                </div>
+            </div>
+            <div class="course-footer">
+                <div class="price">1,190,000đ  <span class="old-price"> 2,290,000đ</span></div>
+            <button class="btn-enroll" onclick="openModal('Python for Data Analysis','1,190,000đ')">Đăng ký</button>
+            </div>
+        </div>
+        <div class="course-card reveal" data-level="inter">
+            <div class="course-thumb thumb-3">
+                📊
+                <span class="course-level lv-inter">Trung cấp</span>
+            </div>
+            <div class="course-body">
+                <div class="course-category">Visualization</div>
+                <div class="course-title">Power BI Masterclass — Dashboard Chuyên Nghiệp</div>
+                <div class="course-desc">Xây dựng dashboard tương tác từ A–Z với Power BI. DAX nâng cao, data modelling và best practices.</div>
+                <div class="course-meta">
+                    <span>⏱ 24 giờ</span><span>📹 72 bài</span><span>👥 1,940</span>
+                </div>
+            </div>
+            <div class="price">1,490,000đ <span class="old-price">2,790,000đ</span></div>
+            <button class="btn-enroll" onclick="openModal('Power BI Masterclass','1,490,000đ')">Đăng ký</button>
+        </div>
+        </div>
+        <div class="course-card reveal" data-level="inter">
+            <div class="course-thumb thumb-4">
+                        📉
+                     <span class="course-level lv-inter">Trung cấp</span>
+            </div>
+            <div class="course-body">
+                <div class="course-category">Statistics</div>
+                <div class="course-title">Thống kê cho Data Analyst & A/B Testing</div>
+                <div class="course-desc">Kiểm định giả thuyết, confidence intervals, power analysis và thiết kế A/B trong môi trường thực tế</div>
+                <div class="course-meta">
+                    <span>⏱ 20 giờ</span><span>📹 60 bài</span><span>👥 1,520</span>
+                </div>
+            </div>
+            <div class="course-footer">
+                <div class="price">1,290,000đ <span class="old-price">2,490,000đ</span></div>
+                <button class="btn-enroll" onclick="openModal('Thống kê & A/B Testing','1,290,000đ')">Đăng ký</button>
+            </div>
+        </div>
+        <div class="course-card reveal" data-level="advanced">
+            <div class="course-thumb thumb-5">
+                  ☁️
+                  <span class="course-level lv-advanced">Nâng cao</span>
+            </div>
+            <div class="course-body">
+                <div class="course-category">Cloud & Big Data</div>
+                <div class="course-title">BigQuery & dbt - Mdern Data Stack</div>
+                <div class="course-desc">Xây dựng data pipeline với dbt, phân tích petabyte dữ liệu với BigQuery và tối ưu cost trên GCP.</div>
+                <div class="course-meta">
+                    <span>⏱ 36 giờ</span><span>📹 108 bài</span><span>👥 890</span>
+                </div>
+            </div>
+            <div class="course-footer">
+                <div class="price">1,990,000đ <span class="old-price">3,490,000đ</span></div>
+                 <button class="btn-enroll" onclick="openModal('BigQuery & dbt','1,990,000đ')">Đăng ký</button>
+            </div>
+        </div>
+        <div class="course-card reveal" data-level="advanced">
+      <div class="course-thumb thumb-6">
+        🤖
+        <span class="course-level lv-advanced">Nâng cao</span>
+      </div>
+      <div class="course-body">
+        <div class="course-category">Machine Learning</div>
+        <div class="course-title">ML cho Data Analyst — Scikit-learn & Prediction</div>
+        <div class="course-desc">Supervised & unsupervised learning, feature engineering và triển khai model vào bài toán kinh doanh.</div>
+        <div class="course-meta">
+          <span>⏱ 40 giờ</span><span>📹 120 bài</span><span>👥 720</span>
+        </div>
+      </div>
+      <div class="course-footer">
+        <div class="price">2,290,000đ <span class="old-price">3,990,000đ</span></div>
+        <button class="btn-enroll" onclick="openModal('ML cho Data Analyst','2,290,000đ')">Đăng ký</button>
+      </div>
+    </div>
+ 
+  </div>
+  <div class="featured-card reveal">
+    <div class="featured-left">
+      <div class="featured-badge">⭐ Bán chạy nhất</div>
+      <h2>Data Analyst<br>Complete Bundle</h2>
+      <p>Trọn bộ 6 khoá học từ cơ bản đến nâng cao. Lộ trình thiết kế sẵn, mentoring 1-1 và hỗ trợ tìm việc.</p>
+      <div class="featured-includes">
+        <div class="fi-item"><div class="fi-check">✓</div>Toàn bộ 6 khoá học (180+ giờ học)</div>
+        <div class="fi-item"><div class="fi-check">✓</div>4 buổi mentoring 1-1 mỗi tháng</div>
+        <div class="fi-item"><div class="fi-check">✓</div>Bộ 500+ bài tập & dataset thực tế</div>
+        <div class="fi-item"><div class="fi-check">✓</div>Hỗ trợ review CV & mock interview</div>
+        <div class="fi-item"><div class="fi-check">✓</div>Chứng chỉ hoàn thành được công nhận</div>
+        <div class="fi-item"><div class="fi-check">✓</div>Truy cập trọn đời + cập nhật mới</div>
+      </div>
+      <button class="btn-featured"
+        onclick="openModal('Data Analyst Complete Bundle','5,990,000đ')">
+        Đăng ký ngay — Tiết kiệm 59%
+      </button>
+    </div>
+    <div class="featured-price-block">
+      <div class="original-price">Giá gốc: 14,540,000đ</div>
+      <div class="featured-main-price"><sup>đ</sup>5,990,000</div>
+      <div class="featured-save">🔥 Tiết kiệm 8,550,000đ (59%)</div>
+      <div class="featured-note">Thanh toán một lần, học trọn đời</div>
+      <div class="bundle-includes">
+        <div class="bundle-includes-label">Bao gồm:</div>
+        <div class="bundle-includes-list">SQL • Python • Power BI<br>Statistics • BigQuery • ML</div>
+      </div>
+    </div>
+  </div>
+    </section>
+    <!--Đánh giá học viên-->
+    <section id="testimonials">
+  <div class="section-label">Học viên nói gì</div>
+  <div class="section-title">Hàng nghìn người đã<br>thay đổi sự nghiệp</div>
+ 
+  <div class="testi-grid">
+ 
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Sau 5 tháng học, mình được nhận vào vị trí Data Analyst tại công ty fintech với mức lương gấp đôi. Khoá SQL và Python cực kỳ thực tế, dạy đúng những gì doanh nghiệp cần.</div>
+      <div class="testi-author">
+        <div class="testi-avatar av1">TH</div>
+        <div>
+          <div class="testi-name">Trần Hoàng</div>
+          <div class="testi-role">Data Analyst @ VPBank</div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Mình chuyển ngành từ kế toán sang data sau 6 tháng. Mentor hỗ trợ rất nhiệt tình, review portfolio và chuẩn bị phỏng vấn kỹ lưỡng. Khuyên mọi người mua bundle để tiết kiệm.</div>
+      <div class="testi-author">
+        <div class="testi-avatar av2">LM</div>
+        <div>
+          <div class="testi-name">Lê Minh</div>
+          <div class="testi-role">Business Analyst @ Shopee</div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="testi-card reveal">
+      <div class="stars">★★★★★</div>
+      <div class="testi-quote">"</div>
+      <div class="testi-text">Khoá Power BI thay đổi cách mình làm việc hoàn toàn. Dashboard tự động giúp team tiết kiệm 8 tiếng mỗi tuần. Sếp ấn tượng và mình được thăng chức sau 3 tháng.</div>
+      <div class="testi-author">
+        <div class="testi-avatar av3">NL</div>
+        <div>
+          <div class="testi-name">Nguyễn Linh</div>
+          <div class="testi-role">Senior Analyst @ Vincommerce</div>
+        </div>
+      </div>
+    </div>
+ 
+  </div>
+</section>
+<!--FAQ-->
+<section id="faq" class="faq-bg">
+  <div class="faq-header">
+    <div class="section-label">FAQ</div>
+    <div class="section-title">Câu hỏi thường gặp</div>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Tôi không có nền tảng IT, có học được không?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-a">Hoàn toàn có thể! Các khoá học thiết kế từ zero, không yêu cầu lập trình trước. Nhiều học viên thành công xuất phát từ kế toán, marketing hay hoàn toàn không liên quan công nghệ.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Học xong có được hỗ trợ tìm việc không?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-a">Khi mua Complete Bundle, bạn được hỗ trợ review CV, LinkedIn, mock interview 1-1 và kết nối mạng lưới doanh nghiệp đối tác. Tỷ lệ tìm được việc sau 3 tháng tốt nghiệp là 94%.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Khoá học có hạn sử dụng không?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-a">Không! Bạn có quyền truy cập trọn đời kể cả các bài học cập nhật mới. Một lần mua, học mãi mãi.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Phải học bao nhiêu giờ mỗi ngày?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-a">Khuyến nghị 1-2 giờ/ngày. Học đều đặn 1.5 giờ/ngày có thể hoàn thành lộ trình trong 6 tháng. Hoàn toàn linh hoạt theo tốc độ của bạn.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Có chính sách hoàn tiền không?
+        <div class="faq-icon">+</div>
+      </button>
+      <div class="faq-a">Có! Hoàn tiền 100% trong vòng 30 ngày nếu không hài lòng, không cần giải thích.</div>
+    </div>
+  </div>
+</section>
+<!--Kêu gọi học viên-->
+<section class="cta-section">
+    <div class="cta-bg"></div>
+    <h2>Bắt đầu hành trình<br>Data của bạn hôm nay</h2>
+    <p>Đừng để dữ liệu là rào cản. Hãy để nó trở thành lợi thế cạnh tranh của bạn.</p>
+    <div class="cta-actions">
+        <button class="btn-primary"
+        onclick="document.getElementById('courses').scrollIntoView({behavior:'smooth'})">
+        Xem tất cả các khóa học
+    </button>
+  <button class="btn-ghost"
+  onclick="openModal('Tư vấn miễn phí','Miễn phí')">
+    Tư vấn miễn phí
+</button>
+    </div>
+</section>
+<!--FOOTER-->
+<footer>
+    <div class="footer-logo">Data<span>Mind</span></div>
+    <div calss="footer-copy">© 2026 DataMind. All rights reserved.</div>
+    <div class="footer-links">
+        <a href="#">Điều khoản</a>
+        <a href="#">Bảo mật</a>
+        <a href="#">Liên hệ</a>
+    </div>
+</footer>
+<!--MODAL- POPUP đăng ký khóa học-->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+    <div class="modal" id="modalBox">
+        <button class="modal-close" onclick="closeModal()">X</button>
+        <h3>Đăng ký khóa học</h3>
+        <div class="modal-course-name" id="modalCourseName"></div>
+    <div class="form-group">
+      <label>Họ và tên</label>
+      <input type="text" placeholder="Nguyễn Văn A">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="example@gmail.com">
+    </div>
+    <div class="form-group">
+      <label>Số điện thoại</label>
+      <input type="tel" placeholder="0901 234 567">
+    </div>
+    <div class="price-row">
+      <span class="price-label">Học phí</span>
+      <span class="price" id="modalPrice"></span>
+    </div>
+    <button class="btn-submit" onclick="submitEnroll()">Xác nhận đăng ký →</button>
+  </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

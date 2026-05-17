@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab Thực Hành — DataMind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ───────────────────────────────────────
+       STYLES RIÊNG CHO TRANG LAB
+    ─────────────────────────────────────── */
+
+    /* Header */
+    .lab-header {
+      padding: calc(var(--nav-h) + 64px) 5% 48px;
+      position: relative; overflow: hidden;
+    }
+    .lab-header-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg,rgba(0,229,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 100% at 20% 50%, black 30%, transparent 100%);
+    }
+    .lab-orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(124,58,237,.15) 0%, transparent 70%);
+      top: -80px; right: 10%;
+      animation: float 9s ease-in-out infinite;
+    }
+    .lab-header-content { position: relative; z-index: 1; }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--muted); font-size: .84rem; text-decoration: none;
+      margin-bottom: 20px; transition: color .2s;
+    }
+    .back-btn:hover { color: var(--accent); }
+    .lab-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.25);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: .76rem; color: #a78bfa; margin-bottom: 16px;
+      animation: fadeUp .5s ease both;
+    }
+    .lab-header h1 {
+      font-size: clamp(2rem,5vw,3.4rem); font-weight: 800;
+      letter-spacing: -2px; line-height: 1.08; margin-bottom: 12px;
+      animation: fadeUp .5s .1s ease both;
+    }
+    .lab-header h1 em { font-style: normal; color: var(--accent2); }
+    .lab-header p {
+      font-size: .98rem; color: var(--muted); max-width: 500px;
+      line-height: 1.7; animation: fadeUp .5s .2s ease both;
+    }
+    .lab-stats {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      margin-top: 32px; padding-top: 28px;
+      border-top: 1px solid var(--border);
+      animation: fadeUp .5s .3s ease both;
+    }
+    .lab-stat-num { font-family: 'Syne',sans-serif; font-size: 1.6rem; font-weight: 800; color: #fff; }
+    .lab-stat-label { font-size: .72rem; color: var(--muted); margin-top: 2px; }
+
+    /* Body */
+    .lab-body { padding: 0 5% 80px; }
+
+    /* Search */
+    .lab-toolbar {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 32px; flex-wrap: wrap;
+    }
+    .search-wrap { position: relative; flex: 1; min-width: 180px; max-width: 340px; }
+    .search-wrap .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .85rem; pointer-events: none; }
+    .lab-search {
+      width: 100%; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 14px 10px 36px;
+      color: var(--text); font-family: 'DM Sans',sans-serif; font-size: .86rem;
+      outline: none; transition: border-color .2s;
+    }
+    .lab-search:focus { border-color: rgba(0,229,255,.3); }
+    .lab-search::placeholder { color: var(--muted); }
+    .lab-count { font-size: .8rem; color: var(--muted); margin-left: auto; }
+    .lab-count b { color: var(--accent); }
+
+    /* Grid */
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* Card */
+    .lab-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 18px; overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: all .3s;
+    }
+    .lab-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124,58,237,.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,.4);
+    }
+
+    /* Dải màu đầu card */
+    .lab-card-top {
+      padding: 20px 20px 14px;
+      position: relative;
+    }
+    .lab-card-top::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    }
+    .c1 .lab-card-top::before { background: linear-gradient(90deg,#f97316,#ef4444); }
+    .c2 .lab-card-top::before { background: linear-gradient(90deg,#3b82f6,#06b6d4); }
+    .c3 .lab-card-top::before { background: linear-gradient(90deg,#8b5cf6,#ec4899); }
+    .c4 .lab-card-top::before { background: linear-gradient(90deg,#10b981,#06b6d4); }
+    .c5 .lab-card-top::before { background: linear-gradient(90deg,#f59e0b,#f97316); }
+    .c6 .lab-card-top::before { background: linear-gradient(90deg,#6366f1,#8b5cf6); }
+    .c7 .lab-card-top::before { background: linear-gradient(90deg,#14b8a6,#10b981); }
+
+    .card-icon { font-size: 1.8rem; display: block; margin-bottom: 10px; }
+    .card-num  { font-size: .68rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .card-title{ font-family: 'Syne',sans-serif; font-size: .98rem; font-weight: 700; color: #fff; line-height: 1.3; }
+
+    /* Links */
+    .card-links { padding: 4px 20px 16px; flex: 1; list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .card-links li a {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px; border-radius: 9px;
+      color: var(--muted); font-size: .83rem; text-decoration: none;
+      border: 1px solid transparent; transition: all .2s;
+    }
+    .card-links li a:hover {
+      background: rgba(124,58,237,.08);
+      border-color: rgba(124,58,237,.2);
+      color: var(--text);
+    }
+    .link-dot  { font-size: .6rem; color: var(--accent2); opacity: .7; flex-shrink: 0; }
+    .link-name { flex: 1; }
+    .link-arr  { font-size: .65rem; color: var(--muted); opacity: 0; transition: opacity .2s, transform .2s; }
+    .card-links li a:hover .link-arr { opacity: 1; transform: translateX(3px); }
+
+    /* Footer card */
+    .card-footer {
+      padding: 11px 20px; border-top: 1px solid var(--border);
+      font-size: .72rem; color: var(--muted);
+    }
+    .card-footer b { color: var(--accent); }
+
+    /* No result */
+    .no-result {
+      grid-column: 1/-1; text-align: center;
+      padding: 60px 20px; display: none;
+    }
+    .no-result.show { display: block; }
+    .no-result-icon { font-size: 2.8rem; margin-bottom: 14px; }
+    .no-result h3   { color: #fff; font-size: 1.1rem; margin-bottom: 6px; }
+    .no-result p    { color: var(--muted); font-size: .85rem; }
+
+    /* Responsive */
+    @media (max-width: 1100px) { .lab-grid { grid-template-columns: repeat(3,1fr); } }
+    @media (max-width: 780px)  { .lab-grid { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .mobile-drawer { display: flex; }
+      .bottom-nav { display: flex; }
+      body { padding-bottom: var(--bottom-nav-h); }
+      nav { padding: 0 4%; }
+      .lab-header { padding: calc(var(--nav-h) + 40px) 4% 36px; }
+      .lab-body   { padding: 0 4% 60px; }
+      .lab-stats  { gap: 18px; }
+      .search-wrap { max-width: 100%; }
+    }
+    @media (max-width: 480px) { .lab-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="mainNav">
+  <a href="index.html" class="logo">Data<span>Mind</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Trang chủ</a></li>
+    <li><a href="index.html#about">Giới thiệu</a></li>
+    <li><a href="index.html#skills">Kỹ năng</a></li>
+    <li><a href="index.html#courses">Khoá học</a></li>
+    <li><a href="lab.html" style="color:var(--accent);font-weight:600;">🧪 Lab</a></li>
+  </ul>
+  <a href="index.html#courses" class="nav-cta">Mua khoá học →</a>
+  <button class="hamburger" id="hamburger" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── MOBILE DRAWER ── -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <a href="index.html"         onclick="closeDrawer()">Trang chủ</a>
+  <a href="index.html#about"   onclick="closeDrawer()">Giới thiệu</a>
+  <a href="index.html#skills"  onclick="closeDrawer()">Kỹ năng</a>
+  <a href="index.html#courses" onclick="closeDrawer()">Khoá học</a>
+  <a href="lab.html"           onclick="closeDrawer()" style="color:var(--accent)">🧪 Lab thực hành</a>
+</div>
+
+<!-- ── BOTTOM NAV (mobile) ── -->
+<nav class="bottom-nav">
+  <button class="bn-item" onclick="location.href='index.html'"><span class="bn-icon">🏠</span>Home</button>
+  <button class="bn-item" onclick="location.href='index.html#courses'"><span class="bn-icon">📚</span>Khoá học</button>
+  <button class="bn-item active"><span class="bn-icon">🧪</span>Lab</button>
+  <button class="bn-item" onclick="location.href='index.html#faq'"><span class="bn-icon">❓</span>FAQ</button>
+</nav>
+
+<!-- ── HEADER ── -->
+<div class="lab-header">
+  <div class="lab-header-grid"></div>
+  <div class="lab-orb"></div>
+  <div class="lab-header-content">
+    <a href="index.html" class="back-btn">← Về trang chủ</a>
+    <div class="lab-badge">🧪 Thực hành</div>
+    <h1>Danh sách<br><em>Lab Thực Hành</em></h1>
+    <p>Tổng hợp 7 nhóm lab từ HTML cơ bản đến JavaScript. Mỗi bài là file HTML độc lập — mở trực tiếp trên trình duyệt.</p>
+    <div class="lab-stats">
+      <div><div class="lab-stat-num">7</div><div class="lab-stat-label">Nhóm lab</div></div>
+      <div><div class="lab-stat-num">21</div><div class="lab-stat-label">Bài thực hành</div></div>
+      <div><div class="lab-stat-num">HTML → JS</div><div class="lab-stat-label">Lộ trình</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── BODY ── -->
+<div class="lab-body">
+
+  <div class="lab-toolbar">
+    <div class="search-wrap">
+      <span class="ico">🔍</span>
+      <input class="lab-search" id="labSearch" type="text"
+        placeholder="Tìm lab... (CSS, Form, JS...)"
+        oninput="searchLab(this.value)">
+    </div>
+    <div class="lab-count">Hiển thị <b id="cnt">7</b> / 7 nhóm</div>
+  </div>
+
+  <div class="lab-grid" id="labGrid">
+
+    <!-- ══ LAB 01: HTML ══ -->
+    <div class="lab-card c1 reveal" data-s="html lab01">
+      <div class="lab-card-top">
+        <span class="card-icon">📄</span>
+        <div class="card-num">Lab 01</div>
+        <div class="card-title">HTML</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab1/Lab01/Vi_du/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab1_3</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab1/Lab01/Vi_du/lab1_bai4.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab1_4</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>2</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 02: Table & List ══ -->
+    <div class="lab-card c2 reveal" data-s="table list lab02">
+      <div class="lab-card-top">
+        <span class="card-icon">📋</span>
+        <div class="card-num">Lab 02</div>
+        <div class="card-title">Table &amp; List</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab2/Vi_du_Lab01/lab2_bai1.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab2_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab2/Vi_du_Lab01/lab2_bai2.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab2_2</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab2/Vi_du_Lab01/lab2_bai3.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab2_3</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>3</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 03: Frame & Form ══ -->
+    <div class="lab-card c3 reveal" data-s="frame form lab03">
+      <div class="lab-card-top">
+        <span class="card-icon">🖼️</span>
+        <div class="card-num">Lab 03</div>
+        <div class="card-title">Frame &amp; Form</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab3/Lab03/Vi_du/lab3_bai1.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab3_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab3/Lab03/Vi_du/lab3_bai2.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab3_2</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab3/Lab03/Vi_du_Lab01/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab3_3</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>3</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 04: CSS Cơ bản ══ -->
+    <div class="lab-card c4 reveal" data-s="css cơ bản lab04">
+      <div class="lab-card-top">
+        <span class="card-icon">🎨</span>
+        <div class="card-num">Lab 04</div>
+        <div class="card-title">CSS Cơ bản</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab4/Lab04/Vi_du/lab4_bai1.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab4_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab4/Lab04/Vi_du/lab4_bai2.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab4_2</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAb/lab4/Lab04/Vi_du/lab4_bai3.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab4_3</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>3</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 05: Các thuộc tính CSS ══ -->
+    <div class="lab-card c5 reveal" data-s="css thuộc tính properties lab05">
+      <div class="lab-card-top">
+        <span class="card-icon">🖌️</span>
+        <div class="card-num">Lab 05</div>
+        <div class="card-title">Các thuộc tính CSS</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab5/lab5_bai1.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab5_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab5/lab5_bai2.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab5_2</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab5/Lab05/Vi_du/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab5_3</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab5/Lab05/Bai_2/lab5_bai3.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab5_4</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>4</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 06: Layout Responsive ══ -->
+    <div class="lab-card c6 reveal" data-s="layout responsive css flexbox grid lab06">
+      <div class="lab-card-top">
+        <span class="card-icon">📐</span>
+        <div class="card-num">Lab 06</div>
+        <div class="card-title">Layout Responsive bằng CSS</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab6/Lab06/Bai_2_Minh_hoa_layout/Bai1/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab6_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab6/Lab06/Bai_2_Minh_hoa_layout/lab06_Bai2.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab6_2</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab6/Lab06/Bai_2_Minh_hoa_layout/lab06_Bai3.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab6_3</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>3</b> bài thực hành</div>
+    </div>
+
+    <!-- ══ LAB 07: JavaScript ══ -->
+    <div class="lab-card c7 reveal" data-s="javascript js lab07">
+      <div class="lab-card-top">
+        <span class="card-icon">⚡</span>
+        <div class="card-num">Lab 07</div>
+        <div class="card-title">Javascript</div>
+      </div>
+      <ul class="card-links">
+        <li><a href="LAB/lab7/Lab07/Vi_du/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab7_1</span><span class="link-arr">→</span>
+        </a></li>
+        <li><a href="LAB/lab7/Lab07/demo_bai_2/index.html" target="_blank">
+          <span class="link-dot">▶</span><span class="link-name">Lab7_2</span><span class="link-arr">→</span>
+        </a></li>
+      </ul>
+      <div class="card-footer"><b>2</b> bài thực hành</div>
+    </div>
+
+    <!-- Không tìm thấy -->
+    <div class="no-result" id="noResult">
+      <div class="no-result-icon">🔍</div>
+      <h3>Không tìm thấy lab</h3>
+      <p>Thử từ khác như "CSS", "Form", "JS"...</p>
+    </div>
+
+  </div><!-- /lab-grid -->
+</div><!-- /lab-body -->
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">Data<span>Mind</span></div>
+  <div class="footer-copy">© 2025 DataMind. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="index.html">Trang chủ</a>
+    <a href="index.html#courses">Khoá học</a>
+    <a href="lab.html">Lab</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+  function searchLab(q) {
+    q = q.trim().toLowerCase();
+    const cards = document.querySelectorAll('.lab-card');
+    let n = 0;
+    cards.forEach(c => {
+      const hit = !q || (c.dataset.s + c.innerText.toLowerCase()).includes(q);
+      c.style.display = hit ? 'flex' : 'none';
+      if (hit) n++;
+    });
+    document.getElementById('cnt').textContent = n;
+    document.getElementById('noResult').classList.toggle('show', n === 0);
+  }
+</script>
+</body>
+</html>
